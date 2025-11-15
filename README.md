@@ -14,23 +14,23 @@ Backend is FastAPI with Uvicorn, using your XGBoost models and SHAP explainers. 
 
 ```mermaid
 graph LR
-    subgraph Frontend["Next.js Frontend"]
-        A[page.tsx] --> B[EnginePredictor]
-        A --> C[NavalPredictor]
-        A --> D[ErrorTerminal]
-    end
-    
-    subgraph Backend["FastAPI Backend"]
-        E[/predict endpoints]
-        F[/health endpoint]
-        G[(Model Artifacts)]
-    end
-    
-    B -->|POST /predict/engine| E
-    C -->|POST /predict/naval| E
-    D -->|GET /health| F
-    E --> G
-    F --> G
+  subgraph Frontend["Next.js Frontend"]
+    A[page.tsx] --> B[EnginePredictor]
+    A --> C[NavalPredictor]
+    A --> D[ErrorTerminal]
+  end
+
+  subgraph Backend["FastAPI Backend"]
+    E[/predict endpoints/]
+    F[/health endpoint/]
+    G[(Model Artifacts)]
+  end
+
+  B -->|POST /predict/engine| E
+  C -->|POST /predict/naval| E
+  D -->|GET /health| F
+  E --> G
+  F --> G
 ```
 
 ## Data Pipeline
@@ -165,19 +165,19 @@ Predicts compressor decay from lever position and ship speed. Same pattern as th
 
 ```mermaid
 graph TD
-    A[Client] -->|GET| B[/]
-    A -->|GET| C[/health]
-    A -->|POST| D[/predict/engine]
-    A -->|POST| E[/predict/naval]
-    
-    B --> F[Root Info]
-    C --> G[Model Status]
-    D --> H[Engine Classification]
-    E --> I[Naval Regression]
-    
-    G --> J{Models Loaded?}
-    J -->|Yes| K[Ready]
-    J -->|No| L[Not Ready]
+  A[Client] -->|GET| B[/Root/]
+  A -->|GET| C[/Health/]
+  A -->|POST| D[/Predict Engine/]
+  A -->|POST| E[/Predict Naval/]
+
+  B --> F[Root Info]
+  C --> G[Model Status]
+  D --> H[Engine Classification]
+  E --> I[Naval Regression]
+
+  G --> J{Models Loaded?}
+  J -->|Yes| K[Ready]
+  J -->|No| L[Not Ready]
 ```
 
 **GET /**
